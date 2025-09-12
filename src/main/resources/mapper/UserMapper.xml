@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eplugger.business.user.mapper.UserMapper">
+    
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.eplugger.business.user.model.User">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="enabled" property="enabled" />
+    </resultMap>
+    
+    <!-- 所有列 -->
+    <sql id="Base_Column_List">
+        id, username, password, enabled
+    </sql>
+
+    <!-- 根据用户名查询用户 -->
+    <select id="findByUsername" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_user
+        WHERE username = #{username}
+    </select>
+    
+    <!-- 插入用户 -->
+    <insert id="insert" parameterType="com.eplugger.business.user.model.User">
+        INSERT INTO sys_user (
+            id, username, password, enabled
+        ) VALUES (
+            #{id}, #{username}, #{password}, #{enabled}
+        )
+    </insert>
+    
+    <!-- 根据ID查询 -->
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_user
+        WHERE id = #{id}
+    </select>
+    
+    <!-- 查询所有用户 -->
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_user
+    </select>
+    
+    <!-- 更新用户 -->
+    <update id="update" parameterType="com.eplugger.business.user.model.User">
+        UPDATE sys_user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="enabled != null">enabled = #{enabled}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+    
+    <!-- 删除用户 -->
+    <delete id="delete">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+    
+    <!-- 修改密码 -->
+    <update id="changePassword">
+        UPDATE sys_user 
+        SET password = #{newPassword}
+        WHERE id = #{id}
+    </update>
+</mapper>
