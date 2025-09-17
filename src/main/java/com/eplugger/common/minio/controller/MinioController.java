@@ -25,13 +25,13 @@ public class MinioController {
     private final MinioService minioService;
 
     /**
-     * 获取附件
+     * 下载文件
      *
      * @param storageName 文件名
      * @return 文件流
      */
-    @GetMapping("/file")
-    public ResponseEntity<InputStreamResource> getFile(@RequestParam("storageName") String storageName) {
+    @GetMapping("/download")
+    public ResponseEntity<InputStreamResource> downloadFile(@RequestParam("storageName") String storageName) {
         try {
             log.info("下载文件: {}", storageName);
             InputStream fileStream = minioService.getFileStream(storageName);

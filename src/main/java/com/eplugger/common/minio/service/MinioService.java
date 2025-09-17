@@ -1,15 +1,21 @@
 package com.eplugger.common.minio.service;
 
 import io.minio.*;
+import io.minio.errors.*;
+import io.minio.http.Method;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -170,4 +176,15 @@ public class MinioService {
             throw new RuntimeException("获取文件信息失败", e);
         }
     }
+
+//    public String getDownloadUrl(String fileName) throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+//        // 获取文件下载URL
+//        return minioClient.getPresignedObjectUrl(
+//                GetPresignedObjectUrlArgs.builder()
+//                        .bucket(bucketName)
+//                        .object(fileName)
+//                        .method(Method.GET)
+//                        .expiry(7, TimeUnit.DAYS)
+//                        .build());
+//    }
 }
