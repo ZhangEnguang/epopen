@@ -1,0 +1,31 @@
+server:
+  port: 12138
+
+spring:
+  application:
+    name: ai-open-backend
+  datasource:
+    url: jdbc:mysql://172.16.8.7:3306/epopen
+    username: root
+    password: eplugger
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+jwt:
+  secret: RUJBQjZERjNGODlBNDk1OTkxMEUyQUREQ0UwNTAyNUEwMjNCNzBCRURBQ0I0RkJFQkY2RTQ0MzZENjg1MjBCN0UyNTdFQTg1MTk2NTQ1MzA4QTg3MjM1NUQ3QTFCOEZBQjUxN0E4QTJEMERDNEU4MjhFOUVDRjhEOTU3RTBEODU
+  expiration: 86400000
+  clock-skew: 600
+# MinIO配置
+minio:
+  endpoint: http://172.16.8.7:9000
+  accessKey: eplugger
+  secretKey: eplugger
+  bucketName: epopen
+logging:
+  level:
+    com.eplugger: DEBUG
+    org.springframework.security: DEBUG
+
+

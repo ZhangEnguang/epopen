@@ -45,6 +45,7 @@ public class WebConstants {
      */
     public static final String[] PUBLIC_PATHS = {
             "/api/auth/**",
+            "/api/key/compare",
             "/api/public/**"
     };
 } 

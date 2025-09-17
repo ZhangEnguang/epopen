@@ -1,0 +1,9 @@
+services:
+  backend:
+    container_name: epopen
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "12138:12138"
+    restart: always

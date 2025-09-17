@@ -4,8 +4,6 @@ import com.eplugger.business.pub.service.impl.BusinessServiceImpl;
 import com.eplugger.business.user.mapper.UserMapper;
 import com.eplugger.business.user.model.User;
 import com.eplugger.business.user.service.UserService;
-import com.eplugger.common.minio.service.MinioService;
-import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,9 +15,6 @@ public class UserServiceImpl extends BusinessServiceImpl<User, UserMapper> imple
 
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
-
-    @Resource
-    private MinioService minioService;
 
     @Autowired
     public UserServiceImpl(UserMapper userMapper, PasswordEncoder passwordEncoder) {
